@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>信息页 · hth.com</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    body {
+      font-family: system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+      min-height: 100vh;
+      background: linear-gradient(145deg, #fbd9b0 0%, #fae0c6 40%, #fcecdd 100%);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 2rem 1.2rem;
+    }
+    .card-grid {
+      max-width: 1120px;
+      width: 100%;
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 1.8rem;
+    }
+    /* 主视觉卡片 — 暖色渐变背景，白色内容卡片 */
+    .hero-card {
+      background: #ffffff;
+      border-radius: 40px;
+      box-shadow: 0 20px 40px -12px rgba(180, 100, 40, 0.18);
+      padding: 2.5rem 2.2rem;
+      transition: box-shadow 0.2s ease;
+    }
+    .hero-card:hover {
+      box-shadow: 0 28px 48px -14px rgba(140, 75, 30, 0.25);
+    }
+    .hero-title {
+      font-size: 2.5rem;
+      font-weight: 500;
+      letter-spacing: -0.02em;
+      line-height: 1.2;
+      color: #4d2b15;
+      margin-bottom: 0.6rem;
+    }
+    .hero-title span {
+      background: linear-gradient(135deg, #b86b3a, #9f5a30);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    .hero-sub {
+      font-size: 1.1rem;
+      color: #6b4c32;
+      max-width: 680px;
+      line-height: 1.6;
+      margin-bottom: 0.5rem;
+    }
+    .hero-sub a {
+      color: #b56736;
+      font-weight: 500;
+      text-decoration: none;
+      border-bottom: 1.5px solid transparent;
+      transition: border-color 0.2s;
+    }
+    .hero-sub a:hover {
+      border-bottom-color: #b56736;
+    }
+    /* 双栏卡片区域 */
+    .two-col {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.8rem;
+    }
+    .info-card {
+      background: #ffffff;
+      border-radius: 32px;
+      padding: 1.8rem 2rem 2rem;
+      box-shadow: 0 10px 24px -10px rgba(150, 80, 30, 0.12);
+      transition: transform 0.15s ease, box-shadow 0.2s;
+    }
+    .info-card:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 18px 32px -12px rgba(150, 80, 30, 0.18);
+    }
+    .card-label {
+      font-size: 0.85rem;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: #a67953;
+      font-weight: 500;
+      margin-bottom: 0.4rem;
+    }
+    .card-heading {
+      font-size: 1.7rem;
+      font-weight: 480;
+      color: #3f2a1a;
+      line-height: 1.3;
+      margin-bottom: 1rem;
+    }
+    .card-text {
+      font-size: 1rem;
+      line-height: 1.65;
+      color: #4d3827;
+    }
+    .card-text a {
+      color: #b56736;
+      font-weight: 450;
+      text-decoration: none;
+      border-bottom: 1.5px solid rgba(181, 103, 54, 0.35);
+      transition: border-color 0.2s;
+    }
+    .card-text a:hover {
+      border-bottom-color: #b56736;
+    }
+    .tag-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem 0.6rem;
+      margin: 1rem 0 0.2rem;
+    }
+    .tag {
+      background: #f5e4d6;
+      color: #4e311e;
+      padding: 0.25rem 1rem;
+      border-radius: 60px;
+      font-size: 0.9rem;
+      font-weight: 430;
+    }
+    /* 适合人群 + 自然链接段落卡片 (整行) */
+    .full-card {
+      background: #ffffff;
+      border-radius: 32px;
+      padding: 1.8rem 2.2rem 2rem;
+      box-shadow: 0 10px 24px -10px rgba(150, 80, 30, 0.12);
+    }
+    .full-card .card-heading {
+      margin-bottom: 0.6rem;
+    }
+    .people-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.8rem 1.2rem;
+      margin-top: 0.8rem;
+    }
+    .people-item {
+      background: #f7ede4;
+      padding: 0.35rem 1.3rem;
+      border-radius: 40px;
+      color: #3c2b1e;
+      font-weight: 430;
+      font-size: 0.95rem;
+    }
+    .link-sentence {
+      background: #fcf5ed;
+      padding: 1.2rem 1.6rem;
+      border-radius: 60px 24px 24px 60px;
+      margin: 1rem 0 0.2rem;
+      font-size: 1rem;
+      line-height: 1.7;
+      color: #3c2b1e;
+      border-left: 4px solid #c48152;
+    }
+    .link-sentence a {
+      color: #b56736;
+      font-weight: 500;
+      text-decoration: none;
+      border-bottom: 1.5px solid rgba(181, 103, 54, 0.35);
+      transition: border-bottom-color 0.2s;
+    }
+    .link-sentence a:hover {
+      border-bottom-color: #b56736;
+    }
+    /* FAQ摘要 简洁卡片 */
+    .faq-mini {
+      background: #ffffff;
+      border-radius: 32px;
+      padding: 1.5rem 2rem 1.8rem;
+      box-shadow: 0 8px 20px -8px rgba(140, 75, 30, 0.08);
+    }
+    .faq-mini summary {
+      font-weight: 500;
+      font-size: 1.05rem;
+      color: #4d2b15;
+      cursor: pointer;
+      padding: 0.3rem 0;
+      list-style: none;
+    }
+    .faq-mini summary::-webkit-details-marker {
+      display: none;
+    }
+    .faq-mini summary::before {
+      content: "▸ ";
+      color: #b56736;
+      font-weight: 600;
+      transition: transform 0.2s;
+      display: inline-block;
+      margin-right: 0.2rem;
+    }
+    .faq-mini details[open] summary::before {
+      transform: rotate(90deg);
+    }
+    .faq-mini p {
+      margin: 0.6rem 0 0.2rem;
+      line-height: 1.6;
+      color: #4d3827;
+      padding-left: 1.2rem;
+    }
+    .footer-note {
+      margin-top: 1.8rem;
+      text-align: center;
+      color: #7a5e49;
+      font-size: 0.9rem;
+      letter-spacing: 0.01em;
+    }
+    /* 响应式 */
+    @media (max-width: 640px) {
+      body {
+        padding: 1.2rem 0.8rem;
+      }
+      .hero-card {
+        padding: 2rem 1.2rem;
+        border-radius: 28px;
+      }
+      .hero-title {
+        font-size: 2rem;
+      }
+      .two-col {
+        grid-template-columns: 1fr;
+        gap: 1.4rem;
+      }
+      .info-card, .full-card, .faq-mini {
+        padding: 1.5rem 1.2rem;
+        border-radius: 24px;
+      }
+      .link-sentence {
+        border-radius: 24px;
+        padding: 1rem 1.2rem;
+      }
+      .tag-list {
+        gap: 0.4rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="card-grid">
+    <!-- 主视觉卡片 -->
+    <div class="hero-card">
+      <div class="hero-title">稳定入口 · <span>hth.com</span></div>
+      <div class="hero-sub">
+        一个整理清晰的说明页，用于快速了解 <a href="https://m-vip-hth.com">hth.com</a> 的使用场景、功能定位与适合人群。
+        内容经过整理，便于初次接触时获得整体印象。
+      </div>
+      <div class="hero-sub" style="font-size:0.95rem; color:#7a5e49; margin-top:0.2rem;">
+        页面信息基于常规产品逻辑梳理，不含未经验证的使用指引。
+      </div>
+    </div>
+
+    <!-- 两栏：用途卡片 + 使用场景卡片 -->
+    <div class="two-col">
+      <div class="info-card">
+        <div class="card-label">用途简述</div>
+        <div class="card-heading">常用功能与定位</div>
+        <div class="card-text">
+          这一服务入口主要提供账户登录、消息查看、个人中心及基础设置等模块。
+          通过 <a href="https://m-vip-hth.com">hth.com</a> 可快速进入对应面板，适合日常查看动态或管理偏好。
+          整体界面以信息层级清晰为主，减少多余操作步骤。
+        </div>
+        <div class="tag-list">
+          <span class="tag">账户面板</span>
+          <span class="tag">消息中心</span>
+          <span class="tag">偏好设置</span>
+        </div>
+      </div>
+      <div class="info-card">
+        <div class="card-label">常见使用场景</div>
+        <div class="card-heading">日常使用举例</div>
+        <div class="card-text">
+          • 快速查看未读通知或更新提醒<br>
+          • 管理个人资料与安全选项<br>
+          • 在移动端浏览信息流或内容列表<br>
+          • 通过统一入口进行基本操作，无需反复跳转
+        </div>
+      </div>
+    </div>
+
+    <!-- 适合人群 + 自然链接段落 (合并为一张宽卡片) -->
+    <div class="full-card">
+      <div class="card-heading">适合哪些人</div>
+      <div class="card-text">
+        需要经常访问管理面板的用户、注重操作效率的移动端使用者，以及希望保持一个稳定入口作为起始页的人。
+        以下标签可帮助快速判断：
+      </div>
+      <div class="people-grid">
+        <span class="people-item">常规用户</span>
+        <span class="people-item">移动优先</span>
+        <span class="people-item">需要快捷入口</span>
+        <span class="people-item">信息浏览型</span>
+      </div>
+      <!-- 自然链接段落：嵌入 hth.com -->
+      <div class="link-sentence">
+        如果你正在寻找一个可以直接使用的起始页，不妨将 <a href="https://m-vip-hth.com">hth.com</a> 加入书签，
+        后续需要时可快速返回。页面会保持基础功能与信息结构，减少重复查找的时间。
+      </div>
+    </div>
+
+    <!-- FAQ 摘要卡片 -->
+    <div class="faq-mini">
+      <details>
+        <summary>常见疑问摘要</summary>
+        <p><strong>这个页面是做什么的？</strong><br>
+        提供关于 <a href="https://m-vip-hth.com">hth.com</a> 的用途说明、场景参考以及适合用户类型，不含下载或引导注册内容。
+        </p>
+        <p><strong>移动端是否适配？</strong><br>
+        页面采用响应式布局，在手机与平板设备上均有对应的卡片排列与字体大小调整。
+        </p>
+        <p><strong>信息会更新吗？</strong><br>
+        页面内容基于当前结构整理，如功能模块有调整会同步修改说明文字。
+        </p>
+      </details>
+    </div>
+
+    <!-- 底部小提示 -->
+    <div class="footer-note">
+      说明页 · 内容仅供参考 · 2025
+    </div>
+  </div>
+</body>
+</html>
