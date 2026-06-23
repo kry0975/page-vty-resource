@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MK体育 · 查询与延伸阅读</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+            background: #f5f6fa;
+            color: #1e1e2a;
+            line-height: 1.7;
+        }
+
+        /* 深色头图 */
+        .hero {
+            background: linear-gradient(145deg, #0c0e1a 0%, #14182a 100%);
+            padding: 4.5rem 2rem 3.5rem;
+            text-align: center;
+            color: #ecedf0;
+        }
+
+        .hero h1 {
+            font-size: 2.4rem;
+            font-weight: 400;
+            letter-spacing: 0.02em;
+            margin-bottom: 1rem;
+        }
+
+        .hero h1 span {
+            font-weight: 600;
+            color: #f5c542;
+        }
+
+        .hero .sub {
+            max-width: 640px;
+            margin: 0 auto;
+            font-size: 1.05rem;
+            opacity: 0.8;
+            line-height: 1.6;
+        }
+
+        /* 浅色正文区 */
+        .container {
+            max-width: 920px;
+            margin: 0 auto;
+            padding: 2.8rem 2rem 4rem;
+        }
+
+        .intro-card {
+            background: #ffffff;
+            border-radius: 24px;
+            padding: 2.5rem 2.8rem;
+            box-shadow: 0 6px 18px rgba(0,0,0,0.03), 0 1px 3px rgba(0,0,0,0.04);
+            margin-bottom: 2.5rem;
+        }
+
+        .intro-card p {
+            margin-bottom: 1.25rem;
+            font-size: 1rem;
+            color: #2d2d3a;
+        }
+
+        .intro-card p:last-child {
+            margin-bottom: 0;
+        }
+
+        .traits-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+            gap: 1.8rem;
+            margin: 2.5rem 0 1.8rem;
+        }
+
+        .trait-item {
+            background: #f9faff;
+            border-radius: 20px;
+            padding: 1.25rem 1.5rem 1.4rem;
+            border-left: 5px solid #3b63c9;
+            transition: background 0.15s;
+        }
+
+        .trait-item strong {
+            display: block;
+            font-size: 1.05rem;
+            font-weight: 600;
+            margin-bottom: 0.35rem;
+            color: #1d2b4f;
+        }
+
+        .trait-item span {
+            font-size: 0.92rem;
+            color: #3e4055;
+        }
+
+        .highlight-link {
+            color: #1f53b3;
+            text-decoration: none;
+            border-bottom: 1px solid transparent;
+            transition: border-color 0.1s;
+            font-weight: 500;
+        }
+
+        .highlight-link:hover {
+            border-bottom-color: #1f53b3;
+        }
+
+        .scene-box {
+            background: #f1f3f9;
+            border-radius: 20px;
+            padding: 1.8rem 2.2rem;
+            margin: 2rem 0 1.2rem;
+        }
+
+        .scene-box h3 {
+            font-size: 1.1rem;
+            font-weight: 500;
+            letter-spacing: 0.01em;
+            color: #1f2a44;
+            margin-bottom: 0.75rem;
+        }
+
+        .scene-box ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .scene-box li {
+            padding: 0.35rem 0 0.35rem 1.7rem;
+            position: relative;
+            color: #2c2f3f;
+        }
+
+        .scene-box li::before {
+            content: "—";
+            position: absolute;
+            left: 0.2rem;
+            color: #527adb;
+            font-weight: 300;
+        }
+
+        .faq-mini {
+            background: #ffffff;
+            border-radius: 24px;
+            padding: 2rem 2.6rem;
+            margin-top: 2.8rem;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.02);
+        }
+
+        .faq-mini details {
+            margin-bottom: 1rem;
+            border-bottom: 1px solid #e6e8f0;
+            padding-bottom: 0.75rem;
+        }
+
+        .faq-mini details:last-of-type {
+            border-bottom: none;
+            margin-bottom: 0;
+            padding-bottom: 0;
+        }
+
+        .faq-mini summary {
+            font-weight: 500;
+            color: #1f2a44;
+            cursor: pointer;
+            padding: 0.25rem 0;
+            outline: none;
+        }
+
+        .faq-mini summary::-webkit-details-marker {
+            color: #3b63c9;
+        }
+
+        .faq-mini p {
+            margin-top: 0.5rem;
+            font-size: 0.95rem;
+            color: #3b3d4e;
+            padding-left: 0.2rem;
+        }
+
+        .gentle-footer {
+            text-align: center;
+            margin-top: 3.5rem;
+            padding-top: 1.2rem;
+            font-size: 0.9rem;
+            color: #5b5e70;
+            border-top: 1px solid #dde0eb;
+        }
+
+        .gentle-footer a {
+            color: #1f53b3;
+            text-decoration: none;
+        }
+
+        .gentle-footer a:hover {
+            text-decoration: underline;
+        }
+
+        @media (max-width: 600px) {
+            .hero {
+                padding: 3rem 1.2rem 2.5rem;
+            }
+
+            .hero h1 {
+                font-size: 1.8rem;
+            }
+
+            .container {
+                padding: 1.8rem 1rem 3.5rem;
+            }
+
+            .intro-card {
+                padding: 1.8rem 1.2rem;
+            }
+
+            .traits-grid {
+                gap: 1.2rem;
+            }
+
+            .faq-mini {
+                padding: 1.5rem 1.2rem;
+            }
+
+            .scene-box {
+                padding: 1.2rem 1.2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header class="hero">
+        <h1><span>MK体育</span> · 日常查询与对照</h1>
+        <p class="sub">从一则简短的赛事结果开始，延伸出更完整的记录与参照。</p>
+    </header>
+
+    <main class="container">
+        <div class="intro-card">
+            <p>打开浏览器，输入一个熟悉的名字，然后查看最新赛况——这是很多人的日常动作。从某一场联赛的比分，到某位选手的赛季表现，多数时候我们需要的不是一个花哨的入口，而是一片清晰、安静、可以反复对照的界面。</p>
+            <p><a href="https://app-portal-mk.com" class="highlight-link">MK体育</a>所呈现的正是这样一种基调：没有冗余的弹窗与闪烁广告，而是把赛程、数据和历史记录归纳成几列干净的表格。你可以从一场比赛的细节出发，横向对比其他轮次，或者向上追溯最近五场交锋记录。整个过程更像在翻阅一本不断更新的参考手册。</p>
+        </div>
+
+        <div class="traits-grid">
+            <div class="trait-item">
+                <strong>赛程对照</strong>
+                <span>按联赛、月份或队伍筛选，快速定位某一轮次，适合赛前准备与赛后复盘。</span>
+            </div>
+            <div class="trait-item">
+                <strong>记录延伸</strong>
+                <span>点击任意比赛可展开该场次的事件时间轴、阵容与实时统计，便于深度阅读。</span>
+            </div>
+            <div class="trait-item">
+                <strong>多端一致</strong>
+                <span>桌面与移动端布局统一，信息层级不变，查询习惯不用重新适应。</span>
+            </div>
+            <div class="trait-item">
+                <strong>轻量保存</strong>
+                <span>浏览过的页面会自动保留在历史索引中，下次回来可从上次中断处继续。</span>
+            </div>
+        </div>
+
+        <div class="scene-box">
+            <h3>常见查询场景</h3>
+            <ul>
+                <li>周末联赛结束后，核对某支队伍的最终比分与进球时间</li>
+                <li>从一场焦点战切入，查看两队近六次交手记录与主客场差异</li>
+                <li>赛季中期，对照某球员的出场时间、进球与助攻分布</li>
+                <li>追踪杯赛晋级路径，逐轮查看对手与比赛地点</li>
+            </ul>
+        </div>
+
+        <div class="faq-mini">
+            <details>
+                <summary>页面上的数据多久更新一次？</summary>
+                <p>主要联赛与杯赛数据在比赛结束后数分钟内同步，部分次级联赛可能会有小幅延迟。历史数据持续存档，可回溯至多个赛季。</p>
+            </details>
+            <details>
+                <summary>需要注册才能查看完整内容吗？</summary>
+                <p>不强制注册。赛程、积分榜与大部分比赛统计可直接浏览；部分深度分析模块（如球员热区、战术图表）建议登录后使用，以便保存个人筛选偏好。</p>
+            </details>
+            <details>
+                <summary>移动端与桌面端体验区别大吗？</summary>
+                <p>核心信息与交互保持一致。移动端列表采用卡片式布局，横向滚动较少，单手操作友好。桌面端则更强调多列对照与悬浮详情。</p>
+            </details>
+        </div>
+
+        <div class="gentle-footer">
+            <p>如果你正在寻找一个可以安静查阅、反复对照的体育信息页，不妨试试 <a href="https://app-portal-mk.com">MK体育</a> 。<br>这里没有多余的干扰，只有整理好的赛程与记录。</p>
+        </div>
+    </main>
+</body>
+</html>
